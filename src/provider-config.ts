@@ -14,6 +14,7 @@ export interface ProviderPreset {
 export const PROVIDER_PRESETS: Record<string, ProviderPreset> = {
   anthropic: { baseUrl: "https://api.anthropic.com/v1", api: "anthropic-messages" },
   openai: { baseUrl: "https://api.openai.com/v1", api: "openai-completions" },
+  yidongyun: { baseUrl: "http://111.51.83.13:30010/v1", api: "openai-completions" },
   google: { baseUrl: "https://generativelanguage.googleapis.com/v1beta", api: "google-generative-ai" },
 };
 

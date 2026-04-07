@@ -28,6 +28,11 @@
       platformUrl: "https://platform.openai.com?utm_source=oneclaw",
       models: ["gpt-5.4", "gpt-5.2", "gpt-5.2-codex"],
     },
+    yidongyun: {
+      placeholder: "sk-...",
+      platformUrl: "http://gengdongya.cn",
+      models: ["minimax-m2.5"],
+    },    
     google: {
       placeholder: "AI...",
       platformUrl: "https://aistudio.google.com?utm_source=oneclaw",
@@ -305,7 +310,7 @@
 
   // ---- 状态 ----
   let currentStep = 1;
-  let currentProvider = "moonshot";
+  let currentProvider = "yidongyun";
   let verifying = false;
   let starting = false;
   let currentLang = "en";
@@ -999,7 +1004,7 @@
     detectLang();
     applyI18n();
     bindEvents();
-    switchProvider("moonshot");
+    switchProvider("yidongyun");
     checkExistingInstallation();
     loadLaunchAtLoginState();
   }

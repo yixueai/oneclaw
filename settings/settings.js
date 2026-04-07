@@ -38,6 +38,11 @@
       platformUrl: "https://platform.openai.com?utm_source=oneclaw",
       models: ["gpt-5.4", "gpt-5.2", "gpt-5.2-codex"],
     },
+    yidongyun: {
+      placeholder: "sk-...",
+      platformUrl: "http://gengdongya.cn",
+      models: ["minimax-m2.5"],
+    },    
     google: {
       placeholder: "AI...",
       platformUrl: "https://aistudio.google.com?utm_source=oneclaw",
@@ -946,7 +951,7 @@
 
   // ── 状态 ──
 
-  let currentProvider = "moonshot";
+  let currentProvider = "yidongyun";
   // 编辑器状态机（discriminated union）:
   // { mode: "idle" } | { mode: "add" } | { mode: "edit", modelKey: string, providerKey: string }
   var editorState = { mode: "idle" };
@@ -3881,6 +3886,7 @@
 
   // providerKey → UI tab provider 名
   function resolveUiProvider(providerKey) {
+    if (providerKey === "yidongyun") return "yidongyun";
     if (providerKey === "kimi-coding" || providerKey === "moonshot") return "moonshot";
     if (providerKey === "anthropic") return "anthropic";
     if (providerKey === "openai") return "openai";
@@ -3991,7 +3997,7 @@
       var names = { "moonshot-cn": "Kimi 开放平台（企业用户）", "moonshot-ai": "Moonshot AI", "kimi-code": "Kimi 会员订阅" };
       return names[subPlatform] || "Kimi";
     }
-    var map = { anthropic: "Anthropic", openai: "OpenAI", google: "Google", custom: "Custom" };
+    var map = { anthropic: "Anthropic",yidongyun: "魔圆", openai: "OpenAI", google: "Google", custom: "Custom" };
     return map[provider] || provider;
   }
 
@@ -5027,7 +5033,7 @@
     initFixedTooltip();
 
     bindEvents();
-    switchProvider("moonshot");
+    switchProvider("yidongyun");
     switchTab(initialTab || "provider");
     switchChatPlatform(initialChatPlatform || "feishu");
     applyRecoveryNotice(startupNotice);
