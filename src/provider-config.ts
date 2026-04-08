@@ -14,7 +14,7 @@ export interface ProviderPreset {
 export const PROVIDER_PRESETS: Record<string, ProviderPreset> = {
   anthropic: { baseUrl: "https://api.anthropic.com/v1", api: "anthropic-messages" },
   openai: { baseUrl: "https://api.openai.com/v1", api: "openai-completions" },
-  yidongyun: { baseUrl: "http://111.51.83.13:30010/v1", api: "openai-completions" },
+  moyuan: { baseUrl: "http://111.51.83.13:30010/v1", api: "openai-completions" },
   google: { baseUrl: "https://generativelanguage.googleapis.com/v1beta", api: "google-generative-ai" },
 };
 
@@ -225,6 +225,14 @@ export function verifyAnthropic(apiKey: string, modelID?: string): Promise<void>
     }),
   });
 }
+
+export function verifyMoyuan(apiKey: string, modelID?: string): Promise<void> {
+  return jsonRequest("http://111.51.83.13:30010/v1/models", {
+    headers: { Authorization: `Bearer ${apiKey}` },
+  });
+}
+
+
 
 // OpenAI 原生接口验证
 export function verifyOpenAI(apiKey: string): Promise<void> {
@@ -465,6 +473,9 @@ export async function verifyProvider(params: {
   } = params;
   try {
     switch (provider) {
+      case "moyuan":
+        await verifyMoyuan(apiKey!,modelID);
+        break;
       case "anthropic":
         await verifyAnthropic(apiKey!, modelID);
         break;
