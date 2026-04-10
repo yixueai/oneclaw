@@ -14,7 +14,7 @@ export interface ProviderPreset {
 export const PROVIDER_PRESETS: Record<string, ProviderPreset> = {
   anthropic: { baseUrl: "https://api.anthropic.com/v1", api: "anthropic-messages" },
   openai: { baseUrl: "https://api.openai.com/v1", api: "openai-completions" },
-  moyuan: { baseUrl: "http://111.51.83.13:30010/v1", api: "openai-completions" },
+  moyuan: { baseUrl: "https://111.51.83.13:30006/v1", api: "openai-completions" },
   google: { baseUrl: "https://generativelanguage.googleapis.com/v1beta", api: "google-generative-ai" },
 };
 
@@ -226,10 +226,21 @@ export function verifyAnthropic(apiKey: string, modelID?: string): Promise<void>
   });
 }
 
-export function verifyMoyuan(apiKey: string, modelID?: string): Promise<void> {
-  return jsonRequest("http://111.51.83.13:30010/v1/models", {
-    headers: { Authorization: `Bearer ${apiKey}` },
-  });
+export async function verifyMoyuan(apiKey: string, modelID?: string): Promise<void> {
+    const base = `https://111.51.83.13:30006/v1`;
+    await jsonRequest(`${base}/chat/completions`, {
+      method: "POST",
+      headers: {
+        "User-Agent": UA_OPENAI,
+        Authorization: `Bearer ${apiKey}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        model: modelID,
+        max_tokens: 1,
+        messages: [{ role: "user", content: "hi" }],
+      }),
+    });
 }
 
 
@@ -474,7 +485,8 @@ export async function verifyProvider(params: {
   try {
     switch (provider) {
       case "moyuan":
-        await verifyMoyuan(apiKey!,modelID);
+        const moyuan_provider = PROVIDER_PRESETS["moyuan"];
+        await verifyCustom(apiKey!, moyuan_provider.baseUrl, moyuan_provider.api, modelID);
         break;
       case "anthropic":
         await verifyAnthropic(apiKey!, modelID);

@@ -29,8 +29,8 @@
       models: ["gpt-5.4", "gpt-5.2", "gpt-5.2-codex"],
     },
     moyuan: {
-      placeholder: "sk-...",
-      platformUrl: "http://gengdongya.cn",
+      placeholder: "...",
+      platformUrl: "https://www.nx.10086.cn/act_nx/activePage/powerBundle/index",
       models: ["minimax-m2.5"],
     },    
     google: {
@@ -111,7 +111,7 @@
   // ---- 国际化文案 ----
   const I18N = {
     en: {
-      title: "OneClaw Setup",
+      title: "OneClaw MoYuan's Setup",
       "welcome.title": "Welcome to OneClaw",
       "welcome.subtitle": "OneClaw is a one-click installer for OpenClaw",
       "welcome.feat2": "OpenClaw can access files on your computer and automate tasks",
@@ -177,7 +177,7 @@
       "error.connection": "Connection error: ",
     },
     zh: {
-      title: "OneClaw 安装引导",
+      title: "OneClaw 魔圆版安装引导",
       "welcome.title": "欢迎使用 OneClaw",
       "welcome.subtitle": "OneClaw 是 OpenClaw 的一键安装包",
       "welcome.feat2": "OpenClaw 可以访问电脑上的文件，自动执行各种办公任务",
