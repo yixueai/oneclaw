@@ -61,4 +61,4 @@ nsis:
   runAfterFinish: true
   # 关闭 NSIS 差分包，避免生成 .exe.blockmap
   differentialPackage: false
-  artifactName: "OneClaw-Setup-${version}-${arch}.${ext}"
+  artifactName: "OneClaw-Setup-MoYuan-Edition-${version}-${arch}.${ext}"

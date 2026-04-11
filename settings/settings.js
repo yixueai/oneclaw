@@ -41,7 +41,7 @@
     moyuan: {
       placeholder: "sk-...",
       platformUrl: "http://gengdongya.cn",
-      models: ["minimax-m2.5"],
+      models: ["MiniMax-M2.5"],
     },    
     google: {
       placeholder: "AI...",

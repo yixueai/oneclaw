@@ -31,7 +31,7 @@
     moyuan: {
       placeholder: "...",
       platformUrl: "https://www.nx.10086.cn/act_nx/activePage/powerBundle/index",
-      models: ["minimax-m2.5"],
+      models: ["MiniMax-M2.5"],
     },    
     google: {
       placeholder: "AI...",
